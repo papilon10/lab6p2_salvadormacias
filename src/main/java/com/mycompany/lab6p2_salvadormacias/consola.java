@@ -10,47 +10,76 @@ package com.mycompany.lab6p2_salvadormacias;
  */
 public class consola {
 
-    int tamano;
-    int batería;
-    boolean estuche;
+    String identificación;
+    String fabricante;
+    int uso;
+    double precio;
+    juego juegos;
+    String modelo;
 
     public consola() {
     }
 
-    public consola(int tamano, int batería, boolean estuche) {
-        this.tamano = tamano;
-        this.batería = batería;
-        this.estuche = estuche;
+    public consola(String identificación, String fabricante, int uso, double precio, juego juegos, String modelo) {
+        this.identificación = identificación;
+        this.fabricante = fabricante;
+        this.uso = uso;
+        this.precio = precio;
+        this.juegos = juegos;
+        this.modelo = modelo;
     }
 
-    public int getTamano() {
-        return tamano;
+    public String getIdentificación() {
+        return identificación;
     }
 
-    public void setTamano(int tamano) {
-        this.tamano = tamano;
+    public void setIdentificación(String identificación) {
+        this.identificación = identificación;
     }
 
-    public int getBatería() {
-        return batería;
+    public String getFabricante() {
+        return fabricante;
     }
 
-    public void setBatería(int batería) {
-        this.batería = batería;
+    public void setFabricante(String fabricante) {
+        this.fabricante = fabricante;
     }
 
-    public boolean isEstuche() {
-        return estuche;
+    public int getUso() {
+        return uso;
     }
 
-    public void setEstuche(boolean estuche) {
-        this.estuche = estuche;
+    public void setUso(int uso) {
+        this.uso = uso;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public juego getJuegos() {
+        return juegos;
+    }
+
+    public void setJuegos(juego juegos) {
+        this.juegos = juegos;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
     }
 
     @Override
     public String toString() {
-        return "consola{" + "tamano=" + tamano + ", bater\u00eda=" + batería + ", estuche=" + estuche + '}';
+        return "consola{" + "identificaci\u00f3n=" + identificación + ", fabricante=" + fabricante + ", uso=" + uso + ", precio=" + precio + ", juegos=" + juegos + ", modelo=" + modelo + '}';
     }
-    
-    
+
 }
