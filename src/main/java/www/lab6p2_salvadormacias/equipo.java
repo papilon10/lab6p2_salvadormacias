@@ -59,7 +59,7 @@ public class equipo {
 
     @Override
     public String toString() {
-        return "equipo{" + "pais_equipo=" + pais_equipo + ", nombre_equipo=" + nombre_equipo + ", ciudad=" + ciudad + ", estadio=" + estadio + '}';
+        return nombre_equipo;
     }
 
 }

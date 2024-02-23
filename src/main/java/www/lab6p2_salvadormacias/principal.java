@@ -4,7 +4,12 @@
  */
 package www.lab6p2_salvadormacias;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -34,19 +39,19 @@ public class principal extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        agregar_estadio_equipo = new javax.swing.JTextField();
+        agregar_pais_equipo = new javax.swing.JTextField();
+        agregar_nombre_equipo = new javax.swing.JTextField();
+        agregar_ciudad_equipo = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         frame_agregar_jugador = new javax.swing.JFrame();
         jLabel6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jSpinner1 = new javax.swing.JSpinner();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        agregarjugador_nombre = new javax.swing.JTextField();
+        agregar_edad_jugador = new javax.swing.JSpinner();
+        agregar_posicion_jugador = new javax.swing.JComboBox<>();
         jButton5 = new javax.swing.JButton();
         frame_transferencia = new javax.swing.JFrame();
         jLabel12 = new javax.swing.JLabel();
@@ -57,6 +62,7 @@ public class principal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
         jButton6 = new javax.swing.JButton();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
         jPanel1 = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
@@ -89,18 +95,23 @@ public class principal extends javax.swing.JFrame {
 
         jLabel8.setText("ciudad");
         frame_agregar_equipo.getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, -1, -1));
-        frame_agregar_equipo.getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 130, -1));
+        frame_agregar_equipo.getContentPane().add(agregar_estadio_equipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 130, -1));
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        agregar_pais_equipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                agregar_pais_equipoActionPerformed(evt);
             }
         });
-        frame_agregar_equipo.getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 160, -1));
-        frame_agregar_equipo.getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 150, -1));
-        frame_agregar_equipo.getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 170, -1));
+        frame_agregar_equipo.getContentPane().add(agregar_pais_equipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 160, -1));
+        frame_agregar_equipo.getContentPane().add(agregar_nombre_equipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 150, -1));
+        frame_agregar_equipo.getContentPane().add(agregar_ciudad_equipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 170, -1));
 
         jButton4.setText("agregar");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
         frame_agregar_equipo.getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(248, 373, 130, 40));
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
@@ -112,9 +123,16 @@ public class principal extends javax.swing.JFrame {
 
         jLabel11.setText("posicion");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        agregar_edad_jugador.setModel(new javax.swing.SpinnerNumberModel(15, 15, 45, 1));
+
+        agregar_posicion_jugador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "portero", "defensa", "mediocampista", "delantero" }));
 
         jButton5.setText("agregar");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout frame_agregar_jugadorLayout = new javax.swing.GroupLayout(frame_agregar_jugador.getContentPane());
         frame_agregar_jugador.getContentPane().setLayout(frame_agregar_jugadorLayout);
@@ -131,12 +149,12 @@ public class principal extends javax.swing.JFrame {
                         .addGap(65, 65, 65)
                         .addGroup(frame_agregar_jugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(agregarjugador_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(agregar_edad_jugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(frame_agregar_jugadorLayout.createSequentialGroup()
                         .addGap(79, 79, 79)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(agregar_posicion_jugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(289, Short.MAX_VALUE))
         );
         frame_agregar_jugadorLayout.setVerticalGroup(
@@ -147,15 +165,15 @@ public class principal extends javax.swing.JFrame {
                 .addGap(64, 64, 64)
                 .addGroup(frame_agregar_jugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(agregarjugador_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(51, 51, 51)
                 .addGroup(frame_agregar_jugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(agregar_edad_jugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(55, 55, 55)
                 .addGroup(frame_agregar_jugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(agregar_posicion_jugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59))
@@ -171,12 +189,14 @@ public class principal extends javax.swing.JFrame {
         jLabel14.setText("equipos");
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { " " };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
         jScrollPane1.setViewportView(jList1);
 
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("equipos");
+        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jScrollPane2.setViewportView(jTree1);
 
         jButton6.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
@@ -256,12 +276,22 @@ public class principal extends javax.swing.JFrame {
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jButton2);
 
         jButton3.setText("crear transferencias");
         jButton3.setFocusable(false);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jButton3);
 
         jPanel1.add(jToolBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, 328, 25));
@@ -313,6 +343,7 @@ public class principal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
+        abre_equipos();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -320,13 +351,55 @@ public class principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void agregar_pais_equipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_pais_equipoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_agregar_pais_equipoActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        abre_jugadores();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        abre_transferencia();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        equipos.add(new equipo(agregar_pais_equipo.getText(),
+                agregar_nombre_equipo.getText(),
+                agregar_ciudad_equipo.getText(),
+                agregar_estadio_equipo.getText()));
+        
+        lista.add(new equipo(agregar_pais_equipo.getText(),
+                agregar_nombre_equipo.getText(), 
+                agregar_ciudad_equipo.getText(), 
+                agregar_estadio_equipo.getText()));
+        JOptionPane.showMessageDialog(this, "equipo agregado correctamente...");
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        jugadores.add(new jugador(agregarjugador_nombre.getText(),
+                (Integer)agregar_edad_jugador.getValue(),
+                (String) agregar_posicion_jugador.getSelectedItem()
+        )
+        );
+        
+        lista.add(new jugador(agregarjugador_nombre.getText(),
+                (Integer)agregar_edad_jugador.getValue(),
+                (String) agregar_posicion_jugador.getSelectedItem()
+        )
+        );
+        JOptionPane.showMessageDialog(this, "jugador agregado correctamente");
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5MouseClicked
 
     /**
      * @param args the command line arguments
@@ -363,7 +436,48 @@ public class principal extends javax.swing.JFrame {
         });
     }
 
+    private void abre_jugadores() {
+        frame_agregar_jugador.pack();
+        frame_agregar_jugador.setLocationRelativeTo(this);
+        frame_agregar_jugador.setVisible(true);
+
+    }
+
+    private void abre_equipos() {
+        frame_agregar_equipo.pack();
+        frame_agregar_equipo.setLocationRelativeTo(this);
+        frame_agregar_equipo.setVisible(true);
+
+    }
+
+    private void abre_transferencia() {
+        frame_transferencia.pack();
+        frame_transferencia.setLocationRelativeTo(this);
+        frame_transferencia.setVisible(true);
+
+    }
+
+    private void agregar_equipo() {
+
+        DefaultTreeModel m = (DefaultTreeModel) jList1.getModel();
+        DefaultMutableTreeNode raiz
+                = (DefaultMutableTreeNode) m.getRoot();
+        DefaultMutableTreeNode nodo_persona;
+        nodo_persona
+                = new DefaultMutableTreeNode(
+                        new equipo(agregar_pais_equipo.getText(), agregar_nombre_equipo.getText(), agregar_ciudad_equipo.getText(), agregar_estadio_equipo.getText())
+                );
+
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField agregar_ciudad_equipo;
+    private javax.swing.JSpinner agregar_edad_jugador;
+    private javax.swing.JTextField agregar_estadio_equipo;
+    private javax.swing.JTextField agregar_nombre_equipo;
+    private javax.swing.JTextField agregar_pais_equipo;
+    private javax.swing.JComboBox<String> agregar_posicion_jugador;
+    private javax.swing.JTextField agregarjugador_nombre;
     private javax.swing.JFrame frame_agregar_equipo;
     private javax.swing.JFrame frame_agregar_jugador;
     private javax.swing.JFrame frame_transferencia;
@@ -373,7 +487,6 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -396,14 +509,9 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
