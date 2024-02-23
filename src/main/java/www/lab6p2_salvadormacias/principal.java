@@ -7,6 +7,7 @@ package www.lab6p2_salvadormacias;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -397,6 +398,19 @@ public class principal extends javax.swing.JFrame {
         )
         );
         JOptionPane.showMessageDialog(this, "jugador agregado correctamente");
+        
+        DefaultListModel modelo
+                = (DefaultListModel) jList1.getModel();
+
+        modelo.addElement(new jugador(agregarjugador_nombre.getText(),
+                (Integer)agregar_edad_jugador.getValue(),
+                (String) agregar_posicion_jugador.getSelectedItem()
+        )
+        );
+        jList1.setModel(modelo);
+        agregarjugador_nombre.setText("");
+        agregar_edad_jugador.setValue(20);
+        agregar_posicion_jugador.setSelectedIndex(0);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5MouseClicked
