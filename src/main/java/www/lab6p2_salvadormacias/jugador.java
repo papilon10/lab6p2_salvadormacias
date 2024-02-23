@@ -10,9 +10,9 @@ package www.lab6p2_salvadormacias;
  */
 public class jugador {
 
-    String nombre;
-    int edad;
-    String posicion;
+    public String nombre;
+    public int edad;
+    public String posicion;
 
     public jugador() {
     }

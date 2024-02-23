@@ -10,10 +10,10 @@ package www.lab6p2_salvadormacias;
  */
 public class equipo {
 
-    String pais_equipo;
-    String nombre_equipo;
-    String ciudad;
-    String estadio;
+    public String pais_equipo;
+    public String nombre_equipo;
+    public String ciudad;
+    public String estadio;
 
     public equipo() {
     }
